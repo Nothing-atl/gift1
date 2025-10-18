@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gift for my brand new sister — Arya Sivadas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .gradient-background { background: linear-gradient(180deg, #ffd0e5 0%, #ffe8f2 36%, #ffffff 100%); }
+    .bounce2 { animation: bounce2 2s ease infinite; }
+    @keyframes bounce2 { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-14px)} 60%{transform:translateY(-7px)} }
+    .fade-in { animation: fade .5s ease-out both; }
+    @keyframes fade { from { opacity:0; transform:translateY(6px) } to { opacity:1; transform:translateY(0) } }
+  </style>
+</head>
+<body class="gradient-background min-h-screen antialiased">
+  <main class="flex items-center justify-center min-h-screen p-4">
+    <section class="flex flex-col items-center text-center">
+
+      <!-- Wrap the image in a container we can replace with <video> -->
+      <div id="imageContainer" class="rounded-xl h-[280px] w-[280px] overflow-hidden shadow-md">
+        <img id="imageDisplay" src="./images/arya.jpg" alt="Cute welcome gif (balloons and hearts)"
+             class="h-full w-full object-cover" />
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold italic text-[#bd1e59] mt-6">
+        Gift for my brand new sister, <span class="whitespace-nowrap">Arya Sivadas</span> 💖
+      </h1>
+      <p id="subText" class="mt-3 max-w-[40ch] text-[#7a2143] text-lg">
+        hihi ✨✨! I made you a tiny surprise ✨
+      </p>
+
+      <div id="buttons" class="flex pt-6 items-center">
+        <button id="openBtn"
+          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-xl text-[18px] font-semibold min-h-12 min-w-[150px] px-6 py-3 bg-emerald-500 text-white shadow-sm transition hover:bg-emerald-400 focus:outline-none focus:ring-4 focus:ring-emerald-200">
+          Tap for a surprise
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const openBtn = document.getElementById('openBtn');
+    const imageContainer = document.getElementById('imageContainer');
+    const buttons = document.getElementById('buttons');
+    const subText = document.getElementById('subText');
+
+    openBtn.addEventListener('click', () => {
+      imageContainer.innerHTML = `
+        <video id="ghostVid" class="h-[280px] w-[280px] object-cover rounded-xl"
+               autoplay muted loop playsinline
+               poster="./images/ghost-poster.jpg">
+          <source src="./images/ghost1.mp4" type="video/mp4" />
+          Your browser doesn't support embedded videos.
+        </video>
+      `;
+      const vid = document.getElementById('ghostVid');
+      vid.load();
+      vid.play().catch(() => {/* autoplay may be blocked, user can tap */});
+
+      subText.textContent = 'Boo! A tiny ghost says hi 👻';
+      buttons.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
