@@ -23,15 +23,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Optional: ensure .nojekyll exists
-      - name: Disable Jekyll
+      - name: Disable Jekyll (optional)
         run: touch .nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .   # deploy the repo root (contains index.html)
+          path: .   # deploy repo root; must contain index.html
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
